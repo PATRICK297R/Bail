@@ -842,9 +842,9 @@ export const makeMessagesSocket = (config: SocketConfig) => {
 					additionalAttributes['media_id'] = mediaHandle
 				}
 
-				if('cachedGroupMetadata' in options) {
-					console.warn('cachedGroupMetadata in sendMessage are deprecated, now cachedGroupMetadata is part of the socket config.')
-				}
+				if (options && 'cachedGroupMetadata' in options) {
+                                        console.warn('cachedGroupMetadata in sendMessage are deprecated, now cachedGroupMetadata is part of the socket config.');
+					}
 
 				await relayMessage(jid, fullMsg.message!, { messageId: fullMsg.key.id!, useCachedGroupMetadata: options.useCachedGroupMetadata, additionalAttributes, statusJidList: options.statusJidList })
 				if(config.emitOwnEvents) {
